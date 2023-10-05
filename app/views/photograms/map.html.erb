@@ -1,0 +1,58 @@
+<main　>
+  <div class="container text-center">
+    <div class="col-11 mx-auto">
+      <h1>From MAP</h1>
+      <div id="map"> </div>
+      <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+      </style>
+
+      <script>
+      let map
+      function initMap(){
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 35.7100627, lng: 139.8107004},
+          zoom: 9,
+        });
+
+        <% @photograms.each do |photogram| %>
+        <% if photogram.latitude && photogram.longitude %>
+        new google.maps.Marker({
+          position:  {lat: <%= photogram.latitude %>, lng:<%= photogram.longitude %>},
+          map: map
+        }).addListener('click', () => {
+          infoWindow = new google.maps.InfoWindow({
+            position: {lat: <%= photogram.latitude %>, lng:<%= photogram.longitude %>},
+            content: `<div class="custom-info">
+              <div class="custom-info-item name">
+              Tips
+              </div>
+              <div class="custom-info-item address">
+              東京都ほげ
+              </div>
+              <div class="custom-info-item tel">
+              <a href="tel:000-0000-0000">000-0000-0000</a>
+              </div>
+              <div class="custom-info-item google-map">
+              <a href="https://goo.gl/maps/qytx6qv2aGp2Xg8G8" target="_blank">MAP</a>
+              </div>
+              </div>`,
+            pixelOffset: new google.maps.Size(0, -50)
+          });
+          infoWindow.open(map);
+        });
+
+        <% end %>
+        <% end %>
+      }
+
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASAtetA1O9b0Lm-hMqHUxIaOOHD9PkIDA&callback=initMap" async defer></script>
+
+    </div>
+  </div>
+</main>

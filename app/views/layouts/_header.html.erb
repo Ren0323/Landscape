@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark main-container">
+    <div class="container">
+      <% if user_signed_in? %>
+        <%= link_to(user_path(user.id), class:"navbar-brand") do %>
+          <span><h2>Landscape</h2></span>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li>
+              <a class="nav-link text-light" href="/photograms">
+                <i class="fa-solid fa-mountain-sun"></i>From Photos
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-light" href="/maps" data-no-turbolink>
+                <i class="fa-solid fa-map-location-dot"></i>From Maps
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-light" href="/users">
+                <i class="fas fa-users"></i>Users
+              </a>
+            </li>
+
+            <li>
+              <a class="nav-link text-light" href="/photograms/new" data-no-turbolink>
+                <i class="fa-solid fa-plus"></i>New Photo
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-light" rel="nofollow" data-method="delete" href="/users/sign_out">
+                <i class="fas fa-sign-out-alt"></i>Log out
+              </a>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <span class="text-white"><h2>Landscape</h2></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <li>
+              <a class="nav-link text-light" href="/">
+                <i class="fas fa-home"></i>Home
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-light" href="/users/sign_up">
+                <i class="fas fa-user-plus"></i>Sign up
+              </a>
+            </li>
+            <li>
+              <a class="nav-link text-light" href="/users/sign_in">
+                <i class="fas fa-sign-in-alt"></i>Log in
+              </a>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </nav>
+</header>
